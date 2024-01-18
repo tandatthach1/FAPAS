@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
+import Footer from '../Component/Footer'
+import { ScrollView } from 'react-native-gesture-handler';
 
 const AccountScreen = () => {
   const navigation = useNavigation();
@@ -35,6 +37,7 @@ const AccountScreen = () => {
   }, []);
 
   return (
+
     <View style={styles.container}>
       <View style={styles.header}>
         <Image
@@ -121,10 +124,15 @@ const AccountScreen = () => {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{ paddingRight: 10 }}
         />
+
       </View>
+      <Footer />
     </View>
+
   );
+
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -162,14 +170,14 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 15,
   },
   logoutButtonText: {
     color: '#fff',
     fontWeight: 'bold',
   },
   section: {
-    marginTop: 20,
+    marginTop: 15,
   },
   sectionTitle: {
     fontSize: 18,
@@ -216,12 +224,12 @@ const styles = StyleSheet.create({
   },
   productImage: {
     width: 70,
-    height: 80,
+    height: 85,
     borderRadius: 8,
     marginBottom: 8, // Added marginBottom to provide space between image and text
   },
   productTitle: {
-    marginTop: 8,
+    marginTop: 0,
     fontSize: 10,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -231,12 +239,12 @@ const styles = StyleSheet.create({
     overflow: 'hidden', // Hide the overflow content
   },
   productPrice: {
-    marginTop: 4,
+    marginTop: 0,
     fontSize: 14,
     color: '#888',
   },
   productRating: {
-    marginTop: 4,
+    marginTop: 0,
     fontSize: 12,
     color: '#555',
   },

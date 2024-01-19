@@ -235,42 +235,53 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingRight: 10,
     marginTop: 10,
-    marginLeft:20
+    marginLeft: 20,
+    marginRight: 20,
   },
+
   search: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#f3f3f3', // Light gray background color
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#e1e1e1',
     borderRadius: 25,
-    paddingrizontal: 10,
+    paddingHorizontal: 15,
     width: '80%',
     elevation: 2,
   },
+
   input: {
     flex: 1,
     height: 40,
     fontSize: 16,
     paddingHorizontal: 10,
+    color: '#333', // Dark text color
   },
+
   searchButton: {
     padding: 10,
   },
+
+  
+
   cart: {
     alignItems: 'center',
-    marginRight:5,
-    marginTop:6
+    marginRight: 15,
+    marginTop: 6,
   },
+
   cartContainer: {
     alignItems: 'center',
-    marginLeft:-100
-    
+    marginLeft: -10,
   },
+
   cartTitleText: {
-    marginLeft: 10,
+    marginLeft: 5,
     fontSize: 12,
-  },  
+    color: '#333', // Tiki's text color
+  },
+
   searchResultsContainer: {
     position: 'absolute',
     top: 80,
@@ -284,6 +295,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     zIndex: 1,
   },
+
   noResultsText: {
     textAlign: 'center',
     marginTop: 20,
@@ -291,41 +303,43 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#CC3333',
   },
+
   searchResultItem: {
     paddingVertical: 8,
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
   },
+
   container: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    position: 'relative', // Đảm bảo relative position để z-index có hiệu lực
+    position: 'relative', // Ensure relative position for zIndex to take effect
   },
+
   item: {
-    width: '30%',
+    width: '48%',
     marginBottom: 20,
     backgroundColor: '#fff',
     borderRadius: 8,
     elevation: 2,
   },
-  contain: {
-    marginTop: 15,
-    marginLeft: 20,
-    marginRight: 20,
-  },
+
   catepic: {
     width: 40,
     height: 40,
     marginLeft: 10,
   },
+
   categoryContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+
   categoryItem: {
     alignItems: 'center',
   },
+
   catetitle: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -334,53 +348,55 @@ const styles = StyleSheet.create({
     marginRight: 15,
     marginBottom: 5,
   },
-  item: {
-    width: '48%',
-    marginBottom: 20,
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    elevation: 2,
-  },
+
   img: {
     width: '100%',
     height: 170,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
   },
+
   des: {
     padding: 8,
   },
+
   des_text: {
-    color: 'black',
+    color: '#333', // Tiki's text color
     textAlign: 'center',
     marginBottom: 4,
     fontSize: 16,
     fontWeight: 'bold',
   },
+
   price: {
-    color: 'black',
+    color: 'red', // Tiki's price color
     textAlign: 'center',
     marginBottom: 4,
     fontSize: 14,
   },
+
   ratingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 4,
   },
+
   ratingText: {
-    color: 'black',
+    color: '#333', // Tiki's text color
   },
+
   starIcon: {
     color: 'gold',
     fontSize: 16,
     marginRight: 2,
   },
+
   ratingValue: {
-    color: 'black',
+    color: '#333', // Tiki's text color
     marginRight: 2,
   },
+
   ratingCount: {
-    color: 'black',
+    color: '#333', // Tiki's text color
   },
 });

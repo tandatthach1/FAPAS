@@ -140,7 +140,9 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
     flexGrow: 1,
+    backgroundColor: '#f5f5f5', // Tiki's background color
   },
+
   imageContainer: {
     borderWidth: 1,
     borderColor: '#ddd',
@@ -148,77 +150,66 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginBottom: 16,
     width: '100%',
-    height: 450,
-    resizeMode: 'cover',
+    height: 300,
+    backgroundColor: '#fff', // Adjust background color if necessary
   },
+
   image: {
-    width: '90%',
-    height: '85%',
-    resizeMode: 'cover',
-    marginLeft: '5%',
-    marginTop: '5%',
-    marginBottom: '5%'
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain', // Adjust the image resizeMode
   },
+
   title: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: 'bold',
+    color: '#333', // Tiki's text color
   },
+
   price: {
-    fontSize: 22,
-    color: 'red',
+    fontSize: 24,
+    color: 'red', // Consider using Tiki's brand color
     marginBottom: 12,
   },
+
   description: {
     fontSize: 18,
     marginBottom: 12,
+    color: '#666', // Adjust text color to match Tiki's app
   },
+
   ratingContainer: {
     flexDirection: 'row',
     marginBottom: 16,
   },
+
   ratingText: {
     fontSize: 18,
     marginRight: 4,
   },
+
   starIcon: {
     fontSize: 16,
   },
+
   ratingValue: {
     fontSize: 15,
     fontWeight: 'bold',
     marginRight: 2,
     marginLeft: 2,
   },
+
   ratingCount: {
     marginLeft: 4,
   },
+
   buyContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 16,
   },
-  buyNowButton: {
-    backgroundColor: 'green',
-    paddingVertical: 12,
-    paddingHorizontal: 20, // Adjust the width of the button
-    borderRadius: 8,
-    marginRight: 8,
-    width: 150, // Adjust the width of the "Mua Ngay" button
-  },
-  buyButton: {
-    backgroundColor: 'blue',
-    paddingVertical: 12,
-    paddingHorizontal: 20, // Adjust the width of the button
-    borderRadius: 8,
-    width: 198, // Adjust the width of the "Thêm vào giỏ hàng" button
-  },
-  buyButtonText: {
-    fontSize: 18,
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
+
   quantityContainer: {
     borderWidth: 1,
     borderColor: '#ddd',
@@ -226,13 +217,39 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 8,
     marginLeft: 8,
-    width: 60, // Adjust the width of the quantity input
+    width: 60,
+    backgroundColor: '#fff', // Adjust background color if necessary
   },
+
   quantity: {
     fontSize: 16,
     textAlign: 'center',
     paddingVertical: 4,
     paddingHorizontal: 8,
+  },
+
+  buyNowButton: {
+    backgroundColor: '#42b549', // Tiki's green color
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 25, // Adjust the border radius for a rounded button
+    marginRight: 8,
+    width: 150,
+  },
+
+  buyButton: {
+    backgroundColor: '#00b0ff', // Tiki's blue color
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 25,
+    width: 198,
+  },
+
+  buyButtonText: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 export default SingleProductScreen;

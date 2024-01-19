@@ -67,18 +67,30 @@ export default function App() {
               options={{
                 headerTitle: 'FAPAS STORE',
                 headerTitleStyle: {
-                  fontSize: 24,
+                  fontSize: 30,
                   fontWeight: 'bold',
-                  color: '#333', // Your desired text color
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
+                  color: '#808080', // Mã màu hex cho xám
+                  textShadowColor: 'black', // Mã màu CSS cho đen
+                  textShadowOffset: { width: -2, height: 2 }, // Độ dịch chuyển của đổ bóng
+                  textShadowRadius: 1, // Bán kính của đổ bóng
+                  marginLeft: "35%",
+                  marginTop: 0,
+   
                 },
                 headerStyle: {
                   backgroundColor: '#eee', // Your desired background color
                 },
               }}
             />
-            <Stack.Screen name="SingleProduct" component={SingleProductScreen} />
+            <Stack.Screen name="SingleProduct" 
+            component={SingleProductScreen}
+            options={{
+              headerTitle: 'Chi tiết sản phẩm',
+              headerTitleStyle: {
+                fontSize: 20,
+                fontWeight: 'bold',
+                color: '#333', // Your desired text color
+              }}}/>
             <Stack.Screen
               name="CartScreen"
               component={CartScreen}

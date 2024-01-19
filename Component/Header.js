@@ -1,38 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
 export default function Header() {
   const [currentImage, setCurrentImage] = useState(1);
+  const imageList = [1, 2, 3]; // Add more image numbers as needed
+  const [imageIndex, setImageIndex] = useState(0);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      // Chuyển đổi giữa hình ảnh 1 và hình ảnh 2 sau 3 giây
-      setCurrentImage(currentImage === 1 ? 2 : 1);
-    }, 5000);
+      // Display the next image in the list
+      setCurrentImage(imageList[imageIndex]);
 
-    // Lưu ý: Tránh thiếu sót và lỗi memory leak bằng cách làm sạch timeout khi component unmounts
+      // Move to the next image in the list
+      setImageIndex((prevIndex) => (prevIndex + 1) % imageList.length);
+    }, 3500);
+
+    // Clear the timeout when the component unmounts
     return () => clearTimeout(timeoutId);
-  }, [currentImage]);
+  }, [currentImage, imageIndex, imageList]);
 
   return (
     <View style={styles.header}>
       <StatusBar style="auto" />
 
       <View style={styles.logoContainer}>
-        {currentImage === 1 ? (
-          <Image
-            style={styles.logo}
-            source={require('../Image/background1.png')}
-          />
-        ) : (
-          <Image
-            style={styles.logo}
-            source={require('../Image/background2.png')}
-          />
+        {currentImage === 1 && (
+          <Image style={styles.logo} source={require('../Image/background1.png')} />
+        )}
+        {currentImage === 2 && (
+          <Image style={styles.logo} source={require('../Image/background2.png')} />
+        )}
+        {currentImage === 3 && (
+          <Image style={styles.logo} source={require('../Image/background.png')} />
         )}
       </View>
-
     </View>
   );
 }
@@ -41,9 +43,6 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#fff',
     alignItems: 'center',
-  },
-  text: {
-    marginBottom: 10,
   },
   title: {
     fontSize: 26,
@@ -58,10 +57,5 @@ const styles = StyleSheet.create({
     height: 219,
     width: '100%',
     resizeMode: 'contain',
-  },
-  search: {
-    height: 100,
-    width: 370,
-    marginBottom: -40,
   },
 });

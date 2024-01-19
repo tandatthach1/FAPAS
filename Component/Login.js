@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import {
-  StyleSheet, Text, View, TextInput, TouchableOpacity,
+  StyleSheet, Image, Text, View, TextInput, TouchableOpacity,
   KeyboardAvoidingView, ImageBackground, Platform
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -22,16 +22,13 @@ function Login({ navigation }) {
       alert('Đăng nhập thất bại, vui lòng kiểm tra lại tên đăng nhập và mật khẩu');
     }
   };
-  const handleFacebookLogin = async () => {
-    // Xử lý đăng nhập Facebook
-    // ...
-  };
+  
 
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
+    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    style={styles.container}
     >
       <View>
         <ImageBackground style={styles.background}>
@@ -46,7 +43,7 @@ function Login({ navigation }) {
                 onChangeText={(text) => setUsername(text)}
               />
             </View>
-
+  
             <View style={styles.iconinput}>
               <Icon style={styles.icon} name="lock" size={25} color="black" />
               <TextInput
@@ -58,28 +55,70 @@ function Login({ navigation }) {
               />
             </View>
             <Text style={{ alignSelf: 'flex-end', fontSize: 16 }}>Quên mật khẩu?</Text>
-
+  
           </View>
           <TouchableOpacity style={styles.button} onPress={handleLogin}>
             <Text style={styles.buttonText}>Đăng nhập</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.facebookButton} onPress={handleFacebookLogin}>
-            <Text style={styles.buttonText}>Đăng nhập bằng Facebook</Text>
-          </TouchableOpacity>
+          
           <View style={styles.rowContainer}>
-  <Text style={{ alignSelf: 'flex-end', fontSize: 16 }}>Bạn chưa có tài khoản? </Text>
-  {/* Chuyển đến trang Register khi nhấn vào chữ Đăng ký */}
-  <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-    <Text style={{ textAlign: 'center', color: '#191970', fontSize: 16 }}> Đăng kí</Text>
-  </TouchableOpacity>
-</View>
+            <Text style={{ alignSelf: 'flex-end', fontSize: 16 }}>Bạn chưa có tài khoản? </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+              <Text style={{ textAlign: 'center', color: '#191970', fontSize: 16 }}> Đăng kí</Text>
+            </TouchableOpacity>
+          </View>
+       <View style={styles.socialContainer}>
+      <TouchableOpacity style={styles.socialButton}>
+        <Image
+          source={require('../Image/facebook.png')}
+          resizeMode="contain"
+          style={styles.socialIcon}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.socialButton}>
+        <Image
+          source={require('../Image/google.png')}
+          resizeMode="contain"
+          style={styles.socialIcon}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.socialButton}>
+        <Image
+          source={require('../Image/apple-logo.png')}
+          resizeMode="contain"
+          style={styles.socialIcon}
+        />
+      </TouchableOpacity>
+    </View>
           <StatusBar style="auto" />
         </ImageBackground>
       </View>
+  
     </KeyboardAvoidingView>
   );
 }
 const styles = StyleSheet.create({
+  socialContainer: {
+    flexDirection: 'row', // Updated to 'row' for horizontal alignment
+    justifyContent: 'center',
+    marginTop: 20, // Adjust the marginTop as needed
+  },
+  
+  socialButton: {
+    width: 40, // Adjust the width as needed
+    height: 40, // Adjust the height as needed
+    borderRadius: 20,
+    backgroundColor: 'lightgray',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 5,
+  },
+  
+  socialIcon: {
+    width: 30, // Adjust the width as needed
+    height: 30, // Adjust the height as needed
+  },
+ 
   rowContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -125,6 +164,7 @@ const styles = StyleSheet.create({
     marginTop: 10, // Increased margin from the top
     height: 60, // Increased height
     marginBottom: -10, // Added margin at the bottom
+    borderRadius: 10,
   },
   buttonText: {
     color: 'white',

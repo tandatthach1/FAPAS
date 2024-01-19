@@ -19,7 +19,7 @@ function Register({ navigation }) {
         <Text style={styles.title}>ĐĂNG KÝ</Text>
         <View style={{ marginTop: 40 }}>
           <View style={styles.iconinput}>
-            <Icon style={styles.icon} name="user" size={30} color="black" />
+            <Icon style={styles.icon} name="user" size={25} color="black" />
             <TextInput
               style={styles.input}
               placeholderTextColor={"#000033"}
@@ -29,7 +29,7 @@ function Register({ navigation }) {
           </View>
 
           <View style={styles.iconinput}>
-            <Icon style={styles.icon} name="lock" size={30} color="black" />
+            <Icon style={styles.icon} name="lock" size={25} color="black" />
             <TextInput
               style={styles.input}
               placeholderTextColor={"#000033"}
@@ -39,7 +39,7 @@ function Register({ navigation }) {
             />
           </View>
           <View style={styles.iconinput}>
-            <Icon style={styles.icon} name="lock" size={30} color="black" />
+            <Icon style={styles.icon} name="lock" size={25} color="black" />
             <TextInput
               style={styles.input}
               placeholderTextColor={"#000033"}
@@ -51,7 +51,7 @@ function Register({ navigation }) {
         </View>
         <View style={styles.rowContainer}>
   <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-  <Text style={{ textAlign: 'center', color: '#191970', fontSize: 20 }}>
+  <Text style={{ textAlign: 'center', color: '#191970', fontSize: 16 }}>
     Bằng cách nhấn Đăng Ký Ngay, bạn đồng ý với{'\n'}Điều Khoản Dịch Vụ và Chính Sách Bảo Mật
   </Text>
   </TouchableOpacity>
@@ -79,12 +79,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderBottomColor: 'black',
     borderBottomWidth: 0.7, // Increased borderBottomWidth
-    marginBottom: 30, // Increased margin
+    marginBottom: 10, // Increased margin
   },
   title: {
-    fontSize: 45, // Increased fontSize
+    fontSize: 30, // Increased fontSize
     fontWeight: 'bold',
-    marginBottom: 30, // Increased margin
+    marginBottom: -20, // Increased margin
   },
   container: {
     flex: 1,
@@ -92,22 +92,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   input: {
-    height: 60, // Increased height
-    width: 450, // Increased width
+    height: 50, // Increased height
+    width: 300, // Increased width
     backgroundColor: 'white',
-    paddingHorizontal: 20, // Increased paddingHorizontal
-    fontSize: 20, // Increased fontSize
+    paddingHorizontal: 10, // Increased paddingHorizontal
+    fontSize: 16, // Increased fontSize
+    marginTop:5
   },
   button: {
     backgroundColor: '#000033',
-    padding: 20, // Increased padding
-    marginTop: 30, // Increased margin
+    paddingVertical: 20, // Vertical padding
+    paddingHorizontal: 25, // Horizontal padding
+    marginTop: 10, // Increased margin from the top
+    height: 60, // Increased height
+    marginBottom: -10, // Added margin at the bottom
+    borderRadius: 10,
+
   },
   buttonText: {
     color: 'white',
-    fontSize: 22, // Increased fontSize
+    fontSize: 15, // Increased fontSize
     textAlign: 'center',
-    width:200,
+    width:130,
 
   },
   background: {

@@ -20,7 +20,7 @@ export default function App() {
         <StatusBar style="dark" />
 
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="HomeScreen">
+          <Stack.Navigator initialRouteName="Login">
             <Stack.Screen
               name="Login"
               component={Login}
@@ -73,7 +73,7 @@ export default function App() {
                   textShadowColor: 'black', // Mã màu CSS cho đen
                   textShadowOffset: { width: -2, height: 2 }, // Độ dịch chuyển của đổ bóng
                   textShadowRadius: 1, // Bán kính của đổ bóng
-                  marginLeft: "35%",
+                  marginLeft: "25%",
                   marginTop: 0,
    
                 },

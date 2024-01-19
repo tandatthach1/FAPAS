@@ -135,7 +135,8 @@ export default function ListProduct() {
 
         <View style={styles.cart}>
           <TouchableOpacity style={styles.cartContainer} onPress={Login}>
-            <FontAwesome name="user" size={25} color="black" />
+            <Image source={require('../Image/login.png')}
+             style={{ width: 40, height: 30, marginRight: 25, marginTop: 3 }}/>
           </TouchableOpacity>
           <View style={styles.cartContainer}>
               <Text style={styles.cartTitleText}>Đăng nhập</Text>
@@ -277,7 +278,7 @@ const styles = StyleSheet.create({
   },
 
   cartTitleText: {
-    marginLeft: 5,
+    marginRight: 20,
     fontSize: 12,
     color: '#333', // Tiki's text color
   },

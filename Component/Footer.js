@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -15,24 +15,34 @@ export default function Footer() {
   };
 
   const HomeScreenNavigate = () => {
-    navigation.navigate('HomeScreen'); // Assuming there is a 'HomeScreen' route
+    navigation.navigate('HomeScreen');
+  };
+
+  const NotificationScreenNavigate = () => {
+    // Navigate to the NotificationScreen route
+    // Replace 'NotificationScreen' with the actual name of your notification screen route
+    navigation.navigate('NotificationScreen');
   };
 
   return (
     <>
       <View style={styles.Footer}>
-        <View style={styles.footerItem}>
-          <FontAwesome name="home" onPress={HomeScreenNavigate} size={24} color="black"/>
+        <TouchableOpacity style={styles.footerItem} onPress={HomeScreenNavigate}>
+          <FontAwesome name="home" size={24} color="black" />
           <Text style={styles.footerText}>Trang chủ</Text>
-        </View>
-        <View style={styles.footerItem}>
-          <FontAwesome name="shopping-cart" onPress={CartScreenNavigate} size={24} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.footerItem} onPress={CartScreenNavigate}>
+          <FontAwesome name="shopping-cart" size={24} color="black" />
           <Text style={styles.footerText}>Giỏ hàng</Text>
-        </View>     
-        <View style={styles.footerItem}>
-          <FontAwesome name="user" onPress={AccountScreen} size={24} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.footerItem} onPress={NotificationScreenNavigate}>
+          <FontAwesome name="bell" size={24} color="black" />
+          <Text style={styles.footerText}>Thông báo</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.footerItem} onPress={AccountScreen}>
+          <FontAwesome name="user" size={24} color="black" />
           <Text style={styles.footerText}>Tài khoản</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <StatusBar style="auto" />
     </>
@@ -54,5 +64,7 @@ const styles = StyleSheet.create({
   footerItem: {
     alignItems: 'center',
   },
-
+  footerText: {
+    fontSize: 12,
+  },
 });

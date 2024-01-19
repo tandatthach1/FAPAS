@@ -22,6 +22,7 @@ const CartScreen = React.memo(() => {
   const [itemPrices, setItemPrices] = useState({});
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [paidAmounts, setPaidAmounts] = useState({});
+  const [paymentSuccessNotificationShown, setPaymentSuccessNotificationShown] = useState(false);
 
   useEffect(() => {
     fetchCartItems();
@@ -30,6 +31,36 @@ const CartScreen = React.memo(() => {
   useEffect(() => {
     calculateTotalPrice();
   }, [cartItems]);
+
+  useEffect(() => {
+    checkPaymentSuccessNotification(); // Check if payment success notification has been shown for all items
+  }, [cartItems]);
+
+  const checkPaymentSuccessNotification = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@paymentSuccessNotificationAllItems');
+      if (value !== null) {
+        // Payment success notification has already been shown for all items
+        setPaymentSuccessNotificationShown(true);
+      }
+    } catch (error) {
+      console.error('Error reading from AsyncStorage:', error);
+    }
+  };
+
+  const showPaymentSuccessNotification = async () => {
+    if (!paymentSuccessNotificationShown) {
+      // Show payment success notification
+
+      // Mark that the notification has been shown for all items
+      try {
+        await AsyncStorage.setItem('@paymentSuccessNotificationAllItems', 'true');
+        setPaymentSuccessNotificationShown(true);
+      } catch (error) {
+        console.error('Error storing data in AsyncStorage:', error);
+      }
+    }
+  };
 
   const fetchCartItems = useCallback(async () => {
     try {
@@ -120,10 +151,9 @@ const CartScreen = React.memo(() => {
       await AsyncStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
       updateCartItemCount(getCartItemCount(updatedCartItems));
 
-      Alert.alert(
-        'Thanh toán thành công',
-        `Bạn đã thanh toán thành công với giá tiền $${itemPrices[itemId].toFixed(2)}.`
-      );
+    
+
+      showPaymentSuccessNotification(); // Show payment success notification for all items
     } catch (error) {
       console.log(`Error during payment for item ${itemId}:`, error);
       throw error;
@@ -133,6 +163,12 @@ const CartScreen = React.memo(() => {
   const handlePayAllItems = useCallback(async () => {
     try {
       setIsProcessingPayment(true);
+  
+      if (cartItems.length === 0) {
+        // Cart is empty, show a message and return early
+        Alert.alert('Thông báo', 'Giỏ hàng của bạn đang trống!');
+        return;
+      }
   
       const updatedCartItems = await Promise.all(
         cartItems.map(async (item) => {
@@ -151,10 +187,7 @@ const CartScreen = React.memo(() => {
       await AsyncStorage.removeItem('cartItems');
       updateCartItemCount(0);
   
-      Alert.alert(
-        'Thanh toán tất cả thành công',
-        `Bạn đã thanh toán thành công tổng số tiền là $${totalPrice.toFixed(2)}.`
-      );
+      showPaymentSuccessNotification(); // Show payment success notification for all items
     } catch (error) {
       console.log('Lỗi trong quá trình thanh toán tất cả sản phẩm:', error);
       Alert.alert(
@@ -178,7 +211,6 @@ const CartScreen = React.memo(() => {
       updateCartItemCount(getCartItemCount(updatedCartItems));
 
       Alert.alert(
-        'Thanh toán thành công',
         `Bạn đã thanh toán thành công tổng số tiền là $${totalPricePaid.toFixed(2)}.`
       );
 

@@ -67,14 +67,13 @@ export default function ListProduct() {
     // Fetch all products when search text is cleared
     fetchAllProducts();
   };
-
   const setSearchTextAndSearch = (text) => {
     setSearchText(text);
     if (text.length >= minSearchLength) {
       handleSearch(text);
     } else {
       // Fetch all products when search text is empty
-      setProducts(originalProducts);
+      fetchAllProducts();
     }
   };
 
@@ -108,23 +107,28 @@ export default function ListProduct() {
       <View style={styles.searchContainer}>
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginLeft:30,marginRight:-50 }}>
           
-          <TextInput
-            placeholder="Bạn cần tìm gì?"
-            value={searchText}
-            onChangeText={text => {
-              setSearchTextAndSearch(text);
-              setShowClearButton(!!text);
-            }}
-            style={{
-              width: '80%',
-              height: 40,
-              borderColor: 'gray',
-              borderWidth: 1,
-              borderRadius: 20,
-              paddingHorizontal: 15,
-              marginRight: 10,
-            }}
-          />
+        <TextInput
+  placeholder="Bạn cần tìm gì?"
+  value={searchText}
+  onChangeText={(text) => {
+    setSearchTextAndSearch(text);
+    setShowClearButton(!!text);
+  }}
+  style={{
+    width: '80%',
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 20,
+    paddingHorizontal: 15,
+    marginRight: 10,
+  }}
+/>
+{showClearButton && (
+  <TouchableOpacity onPress={clearSearch}>
+    <FontAwesome name="times-circle" size={20} color="gray" />
+  </TouchableOpacity>
+)}
         
         </View>
         

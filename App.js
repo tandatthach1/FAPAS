@@ -8,17 +8,18 @@ import HomeScreen from './Component/HomeScreen';
 import CartScreen from './Component/CartScreen';
 import { CartProvider } from './Component/CartContent';
 import Register from './Component/Register';
-import AccountScreen from './Component/AccountScreen'; // Fix: import AccountScreen
+import AccountScreen from './Component/AccountScreen';
+import NotificationScreen from './Component/NotificationScreen';
+
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <CartProvider>
       <View style={styles.container}>
-        <StatusBar style="auto" />
+        <StatusBar style="dark" />
 
         <NavigationContainer>
-
           <Stack.Navigator initialRouteName="HomeScreen">
             <Stack.Screen
               name="Login"
@@ -32,31 +33,51 @@ export default function App() {
             />
             <Stack.Screen
               name="AccountScreen"
-              component={AccountScreen} // Fix: use AccountScreen instead of Account
-              options={{ headerTitle: 'Tài khoản' }}
-            
+              component={AccountScreen}
+              options={{
+                headerTitle: 'Tài khoản',
+                headerTitleStyle: {
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: '#333', // Your desired text color
+                },
+                headerStyle: {
+                  backgroundColor: '#eee', // Your desired background color
+                },
+              }}
             />
-         <Stack.Screen
-  name="HomeScreen"
-  component={HomeScreen}
-  options={{
-    headerTitle: 'FAPAS STORE',
-    headerTitleStyle: {
-      fontSize: 30,
-      fontWeight: 'bold',
-      color: '#808080', // Text color
-      textShadowColor: 'black',
-      textShadowOffset: { width: -2, height: 2 },
-      textShadowRadius: 1,
-      marginLeft: '35%',
-      marginTop: 0,
-    },
-    headerStyle: {
-      backgroundColor: '#EEEEEE', // Light gray background color
-    },
-  }}
-/>
-
+            <Stack.Screen
+              name="NotificationScreen"
+              component={NotificationScreen}
+              options={{
+                headerTitle: 'Thông báo',
+                headerTitleStyle: {
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: '#333', // Your desired text color
+                },
+                headerStyle: {
+                  backgroundColor: '#eee', // Your desired background color
+                },
+              }}
+            />
+            <Stack.Screen
+              name="HomeScreen"
+              component={HomeScreen}
+              options={{
+                headerTitle: 'FAPAS STORE',
+                headerTitleStyle: {
+                  fontSize: 24,
+                  fontWeight: 'bold',
+                  color: '#333', // Your desired text color
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                },
+                headerStyle: {
+                  backgroundColor: '#eee', // Your desired background color
+                },
+              }}
+            />
             <Stack.Screen name="SingleProduct" component={SingleProductScreen} />
             <Stack.Screen
               name="CartScreen"
@@ -64,11 +85,6 @@ export default function App() {
               options={{ headerTitle: 'Giỏ hàng' }}
             />
           </Stack.Navigator>
-          <Stack.Screen
-             name="AccountScreen"
-             component={AccountScreen}
-             options={{ headerTitle: 'Tài khoản' }}
-          />
         </NavigationContainer>
       </View>
     </CartProvider>

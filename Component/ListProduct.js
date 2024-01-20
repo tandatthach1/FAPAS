@@ -57,7 +57,7 @@ export default function ListProduct() {
   };
 
   const resetProducts = () => {
-    fetch('https://fakestoreapi.com/products')
+    fetch('https://65abda2efcd1c9dcffc724c2.mockapi.io/fapas/product')
       .then(res => res.json())
       .then(json => setProducts(json));
   };

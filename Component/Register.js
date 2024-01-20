@@ -1,70 +1,97 @@
 import { StatusBar } from 'expo-status-bar';
 import { Platform } from 'react-native';
+import React, { useState } from 'react';
 import {
   StyleSheet, Text, View, TextInput, TouchableOpacity,
   KeyboardAvoidingView, ImageBackground
 } from 'react-native';
-import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Login from './Login';
 
 function Register({ navigation }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleRegister = async () => {
+    try {
+      const response = await fetch('https://65abda2efcd1c9dcffc724c2.mockapi.io/fapas/product', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (response.ok) {
+        alert('Đăng ký thành công');
+        navigation.navigate('Login');
+      } else {
+        alert('Đăng ký thất bại, vui lòng thử lại sau');
+      }
+    } catch (error) {
+      console.error('Error during registration:', error);
+      alert('Đã có lỗi xảy ra. Vui lòng thử lại sau.');
+    }
+  };
+
   return (
     <KeyboardAvoidingView
-    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    style={styles.container}
-  >
-    <View>
-      <ImageBackground style={styles.background}>
-        <Text style={styles.title}>ĐĂNG KÝ</Text>
-        <View style={{ marginTop: 40 }}>
-          <View style={styles.iconinput}>
-            <Icon style={styles.icon} name="user" size={25} color="black" />
-            <TextInput
-              style={styles.input}
-              placeholderTextColor={"#000033"}
-              placeholder="Nhập tên đăng nhập hoặc email"
-              onChangeText={(text) => setUsername(text)}
-            />
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+    >
+      <View>
+        <ImageBackground style={styles.background}>
+          <Text style={styles.title}>ĐĂNG KÝ</Text>
+          <View style={{ marginTop: 40 }}>
+            <View style={styles.iconinput}>
+              <Icon style={styles.icon} name="user" size={25} color="black" />
+              <TextInput
+                style={styles.input}
+                placeholderTextColor={"#000033"}
+                placeholder="Nhập tên đăng nhập hoặc email"
+                onChangeText={(text) => setUsername(text)}
+              />
+            </View>
+
+            <View style={styles.iconinput}>
+              <Icon style={styles.icon} name="lock" size={25} color="black" />
+              <TextInput
+                style={styles.input}
+                placeholderTextColor={"#000033"}
+                placeholder="Nhập mật khẩu"
+                secureTextEntry={true}
+                onChangeText={(text) => setPassword(text)}
+              />
+            </View>
+
+            <View style={styles.iconinput}>
+              <Icon style={styles.icon} name="lock" size={25} color="black" />
+              <TextInput
+                style={styles.input}
+                placeholderTextColor={"#000033"}
+                placeholder="Nhập lại mật khẩu"
+                secureTextEntry={true}
+                onChangeText={(text) => setPassword(text)}
+              />
+            </View>
           </View>
 
-          <View style={styles.iconinput}>
-            <Icon style={styles.icon} name="lock" size={25} color="black" />
-            <TextInput
-              style={styles.input}
-              placeholderTextColor={"#000033"}
-              placeholder="Nhập mật khẩu"
-              secureTextEntry={true}
-              onChangeText={(text) => setPassword(text)}
-            />
+          <View style={styles.rowContainer}>
+            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+              <Text style={{ textAlign: 'center', color: '#191970', fontSize: 16 }}>
+                Bằng cách nhấn Đăng Ký Ngay, bạn đồng ý với{'\n'}Điều Khoản Dịch Vụ và Chính Sách Bảo Mật
+              </Text>
+            </TouchableOpacity>
           </View>
-          <View style={styles.iconinput}>
-            <Icon style={styles.icon} name="lock" size={25} color="black" />
-            <TextInput
-              style={styles.input}
-              placeholderTextColor={"#000033"}
-              placeholder="Nhập lại mật khẩu"
-              secureTextEntry={true}
-              onChangeText={(text) => setPassword(text)}
-            />
-          </View>
-        </View>
-        <View style={styles.rowContainer}>
-  <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-  <Text style={{ textAlign: 'center', color: '#191970', fontSize: 16 }}>
-    Bằng cách nhấn Đăng Ký Ngay, bạn đồng ý với{'\n'}Điều Khoản Dịch Vụ và Chính Sách Bảo Mật
-  </Text>
-  </TouchableOpacity>
-</View>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
-          <Text style={styles.buttonText}>Đăng ký</Text>
-        </TouchableOpacity>
-        
-        <StatusBar style="auto" />
-      </ImageBackground>
-    </View>
-  </KeyboardAvoidingView>
 
+          {/* Update the onPress handler here */}
+          <TouchableOpacity style={styles.button} onPress={handleRegister}>
+            <Text style={styles.buttonText}>Đăng ký</Text>
+          </TouchableOpacity>
+
+          <StatusBar style="auto" />
+        </ImageBackground>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 

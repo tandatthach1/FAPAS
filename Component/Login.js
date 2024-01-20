@@ -10,19 +10,27 @@ function Login({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Kiểm tra điều kiện đăng nhập
-    if (username === 'tandat' && password === '123') {
-      // Đăng nhập thành công
-      alert('Đăng nhập thành công');
-      // Chuyển đến trang HomeScreen
-      navigation.navigate('HomeScreen');
-    } else {
-      // Đăng nhập thất bại, bạn có thể thực hiện xử lý khác tùy thuộc vào yêu cầu
-      alert('Đăng nhập thất bại, vui lòng kiểm tra lại tên đăng nhập và mật khẩu');
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('https://65abda2efcd1c9dcffc724c2.mockapi.io/fapas/product');
+      const data = await response.json();
+
+      // Assuming your API returns an array of user objects with 'username' and 'password' fields
+      const user = data.find(user => user.username === username && user.password === password);
+
+      if (user) {
+        // Successful login
+        alert('Đăng nhập thành công');
+        navigation.navigate('HomeScreen');
+      } else {
+        // Invalid credentials
+        alert('Đăng nhập thất bại, vui lòng kiểm tra lại tên đăng nhập và mật khẩu');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('Đã có lỗi xảy ra. Vui lòng thử lại sau.');
     }
   };
-  
 
 
   return (

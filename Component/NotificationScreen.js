@@ -12,6 +12,8 @@ const NotificationScreen = () => {
     const mockNotifications = [
       { id: '1', title: 'Khuyến mãi', message: 'ĐÓN XUÂN XUM VẦY - SẮM TẾT ĐONG ĐẦY' },
       { id: '2', title: 'Live & Video', message: 'XEM LIVE NGAY NÀO!' },
+      { id: '3', title: 'Cập nhật', message: 'Bạn đã đặt hàng tại Fapas?' },
+
       // Add more mock notifications as needed
     ];
 
@@ -36,6 +38,7 @@ const NotificationScreen = () => {
           keyExtractor={(item) => item.id}
         />
       )}
+      
       <Footer />
 
     </View>

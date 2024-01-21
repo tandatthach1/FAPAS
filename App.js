@@ -73,7 +73,7 @@ export default function App() {
                   textShadowColor: 'black', // Mã màu CSS cho đen
                   textShadowOffset: { width: -2, height: 2 }, // Độ dịch chuyển của đổ bóng
                   textShadowRadius: 1, // Bán kính của đổ bóng
-                  marginLeft: "25%",
+                  marginLeft: "32%",
                   marginTop: 0,
    
                 },

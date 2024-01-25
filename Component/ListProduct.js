@@ -78,16 +78,16 @@ export default function ListProduct() {
   };
 
   const getAllProduct = () => {
-    axios
-      .get('https://fakestoreapi.com/products')
-      .then(function (response) {
-        const data = response.data;
-        setProducts(data);
-        setOriginalProducts(data);
-      })
-      .catch(function (error) {
-        alert(error.message);
-      });
+    axios.get('https://fakestoreapi.com/products')
+    .then(function (response) {
+      const data = response.data;
+      setProducts(data);
+      setOriginalProducts(data);
+    })
+    .catch(function (error) {
+      console.error('Error fetching product data:', error);
+      alert('Error fetching product data');
+    });
   };
   const getCategoryProducts = async (categories) => {
     try {
@@ -211,12 +211,12 @@ export default function ListProduct() {
                   </View>
                   <View style={styles.des}>
                     <Text style={styles.des_text}>{product.title}</Text>
-                    <Text style={styles.price}>Price: ${product.price.toFixed(2)}</Text>
+                    <Text style={styles.price}>Price: ${product.price ? product.price.toFixed(2) : 'N/A'}</Text>
                     <View style={styles.ratingContainer}>
                       <Text style={styles.ratingText}>Rating: </Text>
                       <FontAwesome name="star" style={styles.starIcon} />
-                      <Text style={styles.ratingValue}>{product.rating.rate.toFixed(1)}</Text>
-                      <Text style={styles.ratingCount}>({product.rating.count} reviews)</Text>
+                      <Text style={styles.ratingValue}>{product.rating && product.rating.rate ? product.rating.rate.toFixed(1) : 'N/A'}</Text>
+                      <Text style={styles.ratingCount}>({product.rating && product.rating.count ? product.rating.count : 'N/A'} reviews)</Text>
                     </View>
                   </View>
                 </TouchableOpacity>

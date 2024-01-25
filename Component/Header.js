@@ -14,7 +14,7 @@ export default function Header() {
 
       // Move to the next image in the list
       setImageIndex((prevIndex) => (prevIndex + 1) % imageList.length);
-    }, 3500);
+    }, 3000);
 
     // Clear the timeout when the component unmounts
     return () => clearTimeout(timeoutId);

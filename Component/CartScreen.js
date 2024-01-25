@@ -87,24 +87,28 @@ const CartScreen = React.memo(() => {
         if (item.id === itemId && itemId != null) {
           item.quantity -= 1;
           if (item.quantity === 0) {
-            return null;
+            // If quantity becomes 0, update the price and return the item without removing it
+            updateItemPrice(itemId, 0);
+            return item;
           }
           updateItemPrice(itemId, item.quantity);
         }
         return item;
-      }).filter(Boolean);
-
+      });
+  
       if (!cartItems.find((item) => item.id === itemId)?.paid) {
         setCartItems(updatedCartItems);
         await AsyncStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
         updateCartItemCount(getCartItemCount(updatedCartItems));
+        calculateTotalPrice(); // Add this line to recalculate the total price
       } else {
         await handlePaymentForItem(itemId);
       }
     } catch (error) {
       console.log('Error removing item from cart:', error);
     }
-  }, [cartItems, updateItemPrice, updateCartItemCount, handlePaymentForItem]);
+  }, [cartItems, updateItemPrice, updateCartItemCount, handlePaymentForItem, calculateTotalPrice]);
+  
 
   const updateItemPrice = useCallback((itemId, newQuantity) => {
     setItemPrices((prevItemPrices) => {

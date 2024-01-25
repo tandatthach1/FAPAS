@@ -4,6 +4,9 @@ import {
   StyleSheet, Image, Text, View, TextInput, TouchableOpacity,
   KeyboardAvoidingView, ImageBackground, Platform
 } from 'react-native';
+import { LoginButton, AccessToken } from 'react-native-fbsdk';
+import { LoginManager } from 'react-native-fbsdk';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 function Login({ navigation }) {
@@ -31,7 +34,35 @@ function Login({ navigation }) {
       alert('Đã có lỗi xảy ra. Vui lòng thử lại sau.');
     }
   };
-
+  
+  const handleFacebookLogin = async () => {
+    try {
+      const result = await LoginManager.logInWithPermissions(['public_profile']);
+      if (result.isCancelled) {
+        // Handle cancelation
+        console.log('Login canceled');
+      } else {
+        // Get the access token
+        const accessTokenData = await AccessToken.getCurrentAccessToken();
+        if (accessTokenData) {
+          const accessToken = accessTokenData.accessToken.toString();
+          console.log('Access Token:', accessToken);
+  
+          // Call your API or perform any required logic with the access token
+  
+          // Assuming the login is successful
+          alert('Logged in with Facebook');
+          navigation.navigate('HomeScreen');
+        } else {
+          console.log('Failed to get access token');
+        }
+      }
+    } catch (error) {
+      console.error('Error during Facebook login:', error);
+      alert('Failed to log in with Facebook');
+    }
+  };
+  
 
   return (
     <KeyboardAvoidingView
@@ -68,6 +99,9 @@ function Login({ navigation }) {
           <TouchableOpacity style={styles.button} onPress={handleLogin}>
             <Text style={styles.buttonText}>Đăng nhập</Text>
           </TouchableOpacity>
+          <View style={styles.socialContainer}>
+      
+    </View>
           
           <View style={styles.rowContainer}>
             <Text style={{ alignSelf: 'flex-end', fontSize: 16 }}>Bạn chưa có tài khoản? </Text>
@@ -76,7 +110,7 @@ function Login({ navigation }) {
             </TouchableOpacity>
           </View>
        <View style={styles.socialContainer}>
-      <TouchableOpacity style={styles.socialButton}>
+       <TouchableOpacity style={styles.socialButton} onPress={handleFacebookLogin}>
         <Image
           source={require('../Image/facebook.png')}
           resizeMode="contain"
@@ -173,6 +207,7 @@ const styles = StyleSheet.create({
     height: 60, // Increased height
     marginBottom: -10, // Added margin at the bottom
     borderRadius: 10,
+    marginBottom:0
   },
   buttonText: {
     color: 'white',
